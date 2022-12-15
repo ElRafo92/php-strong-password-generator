@@ -1,9 +1,12 @@
 <?php
+    $a = $_GET["pssLength"];
+    
     function passwordGenerator() {
+        $a = $_GET["pssLength"];
         $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789!$%&=?@*";
         $pass = array(); 
         $alphaLength = strlen($alphabet) - 1; 
-        for ($i = 0; $i < 8; $i++) {
+        for ($i = 0; $i < $a; $i++) {
             $n = rand(0, $alphaLength);
             $pass[] = $alphabet[$n];
         }
@@ -21,9 +24,10 @@
     <title>Password Generator</title>
 </head>
 <body>
-    <form action="" method="get">
-        <label for="generator">Inserisci la lunghezza desiderata</label>
-        <input type="number" name="generator" id="" required min="3" max="56" placeholder="min 3 max 56">
+    <form action="index.php" method="GET">
+        <label for="pssLength">Inserisci la lunghezza desiderata</label>
+        <input type="number" name="pssLength" id="pssLength" required min="3" max="16" placeholder="3 to 16">
+        <button type="submit">SEND</button>
     </form>
     <h1>Your new password: <?php echo passwordGenerator() ?></h1>
 </body>
